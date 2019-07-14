@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        // "module": "es2015",
+        "target": "es5",
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "@common/*": ["web/src/common/*"],
+            "@login/*": ["web/src/login/*"],
+            "@app1/*": ["web/src/app1/*"]
+        }
+    },
+    "include": [
+        "./web/src/**/*"
+    ]
+}

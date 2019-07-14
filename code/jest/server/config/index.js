@@ -1,0 +1,38 @@
+const mysql = {
+    connectionLimit : 10,
+    host:'localhost',
+    user:"root",
+    password:"george",
+    database:"index"
+}
+
+const log = {
+    // filename: 
+}
+
+const session = {
+    key: 'session_id', /** (string) cookie key (default is koa:sess) */
+    /** (number || 'session') maxAge in ms (default is 1 days) */
+    /** 'session' will result in a cookie that expires when session/browser is closed */
+    /** Warning: If a session cookie is stolen, this cookie will never expire */
+    maxAge: 86400000,
+    autoCommit: true, /** (boolean) automatically commit headers (default true) */
+    overwrite: true, /** (boolean) can overwrite or not (default true) */
+    httpOnly: true, /** (boolean) httpOnly or not (default true) */
+    signed: true, /** (boolean) signed or not (default true) */
+    rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+    renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+}
+
+const redis = {
+    port: 6379,
+    host: 'localhost'
+}
+
+module.exports = {
+    log,
+    mysql,
+    session,
+    redis,
+    port:7003,
+};
