@@ -79,13 +79,126 @@ test('doAsync calls both callbacks', async () => {
   expect(drink).not.toHaveBeenCalled();
 })
 ```
-### 模块
-Jest可以将测试代码划分为一个个模块，用于承载不同的业务功能，而每个模块内可以编写多个测试用例。
-
-###  生命周期钩子
-有时候我们需要在单元测试
-
 ### 异步函数测试
+jest支持多种方式来编写异步测试用例，其中包括，**Callbacks**，**Promises**，**.resolves / .rejects**，**Async/Await**
+```javascript
+function fetchData1(callback) {
+  setTimeout(() => {
+    callback('peanut butter')
+  }, 1000);
+}
+function fetchData2() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('peanut butter')
+    }, 1000);
+  })
+}
+  // callback的方式
+test('the data is peanut butter', done => {
+  function callback(data) {
+    expect(data).toBe('peanut butter');
+    done();
+  }
+
+  fetchData(callback);
+});
+  // promise的方式
+test('the data is peanut butter', () => {
+  return fetchData2().then(data => {
+    expect(data).toBe('peanut butter');
+  });
+});
+  // .resolves / .rejects的方式
+test('the data is peanut butter', () => {
+  return expect(fetchData2()).resolves.toBe('peanut butter');
+});
+  // Async/Await的方式
+test('the data is peanut butter', async () => {
+  const data = await fetchData2();
+  expect(data).toBe('peanut butter');
+});
+```
+
+### 模块和生命周期钩子
+有时候我们需要在测试之前做很多初始化工作，测试完成之后有时候也需要利用代码帮我们做很多“善后”的工作，jest提供了 **beforeEach** 和 **afterEach** 两个钩子函数以满足以上的场景
+有时候我们只需要初始化一次而并不需要为每个测试执行初始化，以满足这种场景，jest提供了 **beforeAll** 和 **afterAll** 两个钩子函数 
+```javascript
+beforeAll(() => {
+  return fetchData2();
+});
+
+afterAll(() => {
+  return fetchData2();
+});
+
+beforeEach(() => {
+  console.log('beforeEach')
+});
+
+afterEach(() => {
+  console.log('afterEach')
+});
+
+test('city database has Vienna', () => {
+  expect(2).toBe(2)
+});
+
+test('city database has San Juan', () => {
+  expect(2).toBe(2)
+});
+```
+默认情况下，before和after块适用于文件中的每个测试。 您还可以使用describe块将测试组合在一起。 当它们位于describe块中时，before和after块仅适用于该describe块中的测试。
+```javascript
+describe('matching cities to foods', () => {
+  beforeEach(() => {
+    console.log('beforeEach1')
+  });
+
+  test('Vienna <3 sausage', () => {
+    expect(false).toBeFalsy()
+  })
+});
+
+describe('matching cities to foods', () => {
+  beforeEach(() => {
+    console.log('beforeEach1')
+  });
+
+  test('Vienna <3 sausage', () => {
+    expect(false).toBeFalsy()
+  })
+});
+```
+在执行顺序方面，顶级beforeEach在describe块内的beforeEach之前执行，如下例子：
+```javascript
+beforeAll(() => console.log('1 - beforeAll'))
+afterAll(() => console.log('1 - afterAll'))
+beforeEach(() => console.log('1 - beforeEach'))
+afterEach(() => console.log('1 - afterEach'))
+test('', () => console.log('1 - test'))
+describe('Scoped / Nested block', () => {
+  beforeAll(() => console.log('2 - beforeAll'))
+  afterAll(() => console.log('2 - afterAll'))
+  beforeEach(() => console.log('2 - beforeEach'))
+  afterEach(() => console.log('2 - afterEach'))
+  test('', () => console.log('2 - test'))
+  test('', () => console.log('3 - test'))
+})
+
+// 1 - beforeAll
+// 1 - beforeEach
+// 1 - test
+// 1 - afterEach
+// 2 - beforeAll
+// 1 - beforeEach
+// 2 - beforeEach
+// 2 - test
+// 2 - afterEach
+// 1 - afterEach
+// 2 - afterAll
+// 1 - afterAll
+```
 
 ### mock
 
