@@ -20,3 +20,9 @@ test('doAsync calls both callbacks', async () => {
   expect(Promise.resolve('lemon')).resolves.toBe('lemon')
   expect(drink).not.toHaveBeenCalled();
 })
+
+// jest模块
+
+// jest周期钩子
+
+// jest mock
