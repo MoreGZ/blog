@@ -202,6 +202,21 @@ describe('Scoped / Nested block', () => {
 
 ### mock
 
+mock module
+  mock node_module
+  mock user module
+```
+├── config
+├── __mocks__
+│   └── fs.js
+├── models
+│   ├── __mocks__
+│   │   └── user.js
+│   └── user.js
+├── node_modules
+└── views
+```
+
 ### snapshot(代码片段)
 
 ### 社区扩展资源
