@@ -200,7 +200,45 @@ describe('Scoped / Nested block', () => {
 // 1 - afterAll
 ```
 
-### mock
+### mock everything
+#### timer mocks
+模拟所有时间流逝
+模拟当前的timer的时间流逝
+流逝指定秒数
+```javascript
+jest.useFakeTimers();
+
+test('waits 1 second before ending the game', () => {
+  function timerGame(callback) {
+    console.log('Ready....go!');
+    setTimeout(() => {
+      console.log("Time's up -- stop!");
+      callback && callback();
+    }, 1000);
+  }
+  
+  timerGame();
+
+  expect(setTimeout).toHaveBeenCalledTimes(1);
+  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+});
+```
+#### function mocks
+可以使用jest.fn(funcition)生成一个mock对象，该mock对象仍然是个函数，其执行结果与接受的函数一致，同时会在对象上挂载一个‘mock’属性，这个属性包含函数的历史调用信息等一系列信息，方便后面进行断言。
+
+模拟函数返回值
+
+模拟执行过程
+
+#### module mocks
+
+个人模块模拟
+
+node_modules 模块模拟
+
+绕过模块模拟
+
+（es6 class mock）
 
 ### snapshot(代码片段)
 
