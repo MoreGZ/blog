@@ -1,16 +1,21 @@
-# Jest基础（使用jest+Enzyme为react编写单元测试）
+# 使用jest+Enzyme为react编写单元测试
 
-## 前端单元测试介绍
-在将jest之前先介绍一下什么是前端单元测试，前端单元测试和其他的单元测试有什么的区别。
-前端单元测试最大的的特点就是要测试页面渲染
+## 前端单元测试
+前端单元测试与后端单元测试有所不同
+
+后端测试更多是基于接口的或者是基于某个功能函数的测试，只需要将多种情况的输入对应的期望输入与实际的输出做对比，即可完成测试任务。
+
+而前端单元测试需要测试：
+1. 页面的渲染是否正确 
+2. 在特定交互的场景下，是否给予用户正确的反馈（例如用户点击某个元素是否正常出现弹窗提示）
 
 ## jest是什么
->Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
-
-这是jest的官方介绍，jest是由facebook出品的一个测试框架，它拥有：安全与高效，输出代码报告，
-mock模块，高质量的错误报告...等特点
-
-## 市面上的前端单元测试对比（mocha，jest）
+jest是一个由facebook出品的大而全的测试框架，它有以下特点：
+1. 安全快速
+2. 可生成高质量的代码覆盖率报告
+3. 支持对多种对象，可以轻松模拟function，module，timer等外围对象，并且Mock Functions API的模拟导入来监视具有可读测试语法的函数调用
+4. 提供非常直观的测试错误提示
+5. 支持代码片段
 
 ## 编写第一个jest单元测试用例
 1. 先使用npm安装jest
@@ -256,9 +261,27 @@ mock module
 ```
 
 ### snapshot(代码片段)
+通过调用
 
 ### 社区扩展资源
 
-Enzyme 介绍（shallow，fullDom，static）， 结合例子
+## Enzyme 
+### Enzyme介绍
+enzyme 是由airbnb出品的一个react组件测试库，他可以模拟react组件的渲染输出，并且提供一套直观并且灵活的api去对dom进行操作和遍历。
+
+他提供三种渲染方式：shallow，fullDom，static
+1. shallow模式只会渲染组件的第一层，不会渲染组件的子组件
+2. fullDom模式则会对整个react组件树进行渲染
+3. static模式下
 
 例子（ui组件测试+业务组件测试）
+使用：
+```
+npm i --save-dev enzyme enzyme-adapter-react-16
+```
+
+```
+// import { shallow, mount, render } from 'enzyme';
+```
+
+## 用例示范
