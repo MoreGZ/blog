@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["@babel/preset-env", { "modules": false, "useBuiltIns": "usage", "corejs": "3.1.4" }],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-syntax-dynamic-import"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    },
+    "test": {
+      "presets": [
+        ["@babel/preset-env", { "modules": "commonjs", "useBuiltIns": "usage", "corejs": "3.1.4" }]
+      ]
+    }
+  }
+}

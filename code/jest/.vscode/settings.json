@@ -1,3 +1,12 @@
 {
-    "javascript.implicitProjectConfig.experimentalDecorators": true
-}
+    "debug.node.autoAttach": "off",
+    "editor.formatOnSave": false,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "search.exclude": {
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/lib": true,
+      "**/dist": true
+    }
+  }
+  
