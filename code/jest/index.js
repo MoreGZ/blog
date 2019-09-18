@@ -60,6 +60,31 @@ import Test from '../components/Card'
 //   expect(data).toBe('peanut butter');
 // });
 
+// // jets周期钩子函数 和 作用域
+// beforeAll(() => {
+//     console.log('beforeAll')
+// });
+
+// afterAll(() => {
+//     console.log('afterAll')
+// });
+
+// beforeEach(() => {
+//     console.log('beforeEach')
+// });
+
+// afterEach(() => {
+//     console.log('afterEach')
+// });
+
+// test('test1', () => {
+//     console.log('test1')
+// });
+
+// test('test2', () => {
+//     console.log('test2')
+// });
+  
 // // 作用域
 // describe('matching cities to foods', () => {
 //   beforeEach(() => {
@@ -79,31 +104,6 @@ import Test from '../components/Card'
 //   test('Vienna <3 sausage', () => {
 //     expect(false).toBeFalsy()
 //   })
-// });
-
-// // jets周期钩子函数 和 作用域
-// beforeAll(() => {
-//   return fetchData2();
-// });
-
-// afterAll(() => {
-//   return fetchData2();
-// });
-
-// beforeEach(() => {
-//   console.log('beforeEach')
-// });
-
-// afterEach(() => {
-//   console.log('afterEach')
-// });
-
-// test('city database has Vienna', () => {
-//   expect(2).toBe(2)
-// });
-
-// test('city database has San Juan', () => {
-//   expect(2).toBe(2)
 // });
 
 // beforeAll(() => console.log('1 - beforeAll'));
@@ -242,19 +242,19 @@ import Test from '../components/Card'
 // });
 
 // snapshot
-it('snapshot', () => {
-  const obj = {
-    a: 1,
-    b: {
-      x: 'this is x change',
-      y: 'this is y'
-    }
-  }
+// it('snapshot', () => {
+//   const obj = {
+//     a: 1,
+//     b: {
+//       x: 'this is x change',
+//       y: 'this is y'
+//     }
+//   }
   // const wrapper = render(Test)
 
-  expect(obj).toMatchSnapshot()
+  // expect(obj).toMatchSnapshot()
   // expect(toJson(wrapper)).toMatchSnapshot()
-});
+// });
 
 // // Enzyme-shallow, fullDom, static
 // it('Enzyme-shallow', () => {
